@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { User, Thought } from '../models/index';
 
 export const headCount = async () => {
@@ -6,45 +6,45 @@ export const headCount = async () => {
     return numberOfUsers;
 }
 
-export const getAllUsers = async (_req: Request, res: Response, next: NextFunction) => {
+export const getAllUsers = async (_req: Request, res: Response) => {
     try {
         const users = await User.find().populate('thoughts').populate('friends');
         const userObj = {
             users,
             headCount: await headCount(),
         }
-        res.json(userObj);
+        return res.json(userObj);
     } catch (error: any) {
-        next(error); // Pass the error to the next middleware
+        return res.status(500).json(error); // Pass the error to the next middleware
     }
 }
 
-export const getUserById = async (req: Request, res: Response, next: NextFunction) => {
+export const getUserById = async (req: Request, res: Response) => {
     const { userId } = req.params;
     try {
         const user = await User.findById(userId).populate('thoughts').populate('friends');
         if (user) {
-            res.json(user);
+            return res.json(user);
         } else {
-            res.status(404).json({
+            return res.status(404).json({
                 message: 'User not found'
             });
         }
     } catch (error: any) {
-        next(error); // Pass the error to the next middleware
+        return res.status(500).json(error); // Pass the error to the next middleware
     }
 };
 
-export const createUser = async (req: Request, res: Response, next: NextFunction) => {
+export const createUser = async (req: Request, res: Response) => {
     try {
         const user = await User.create(req.body);
-        res.json(user);
+        return res.json(user);
     } catch (err) {
-        next(err); // Pass the error to the next middleware
+        return res.status(500).json(err); // Pass the error to the next middleware
     }
 }
 
-export const updateUser = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
+export const updateUser = async (req: Request, res: Response) => {
     const { userId } = req.params;
     try {
         const user = await User.findOneAndUpdate(
@@ -57,13 +57,13 @@ export const updateUser = async (req: Request, res: Response, next: NextFunction
         }
         return res.json(user);
     } catch (err) {
-        next(err); // Pass the error to the next middleware
+        return res.status(500).json(err); // Pass the error to the next middleware
     }
     // Ensure a response is always sent
     return res.status(500).json({ message: 'An unexpected error occurred' });
 }
 
-export const deleteUser = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
+export const deleteUser = async (req: Request, res: Response) => {
     try {
         const user = await User.findOneAndDelete({ _id: req.params.userId });
         if (!user) {
@@ -74,7 +74,7 @@ export const deleteUser = async (req: Request, res: Response, next: NextFunction
         
         return res.json({ message: 'User successfully deleted' });
     } catch (err) {
-        next(err); // Pass the error to the next middleware
+        return res.status(500).json(err); // Pass the error to the next middleware
     }
     // Ensure a response is always sent
     return res.status(500).json({ message: 'An unexpected error occurred' });
