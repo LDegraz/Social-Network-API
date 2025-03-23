@@ -1,14 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import userRouter from './routes/api/index';
-import thoughtRouter from './routes/api/index';
+import routes from './routes/index.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use('/api/users', userRouter);
-app.use('/api/thoughts', thoughtRouter);
+app.use(routes);
 
 mongoose.connect('mongodb://localhost:27017/socialNetwork')
 .then(() => {
