@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getAllThoughts, getThoughtById, createThought, updateThought, deleteThought } from '../../controllers/thoughtController';
+import { getAllThoughts, getThoughtById, createThought, updateThought, deleteThought } from '../../controllers/thoughtController.js';
 
 const router = Router();
 

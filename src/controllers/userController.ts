@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { User, Thought } from '../models/index';
+import { User, Thought } from '../models/index.js';
 
 export const headCount = async () => {
     const numberOfUsers = await User.aggregate().count('userCount');
