@@ -53,7 +53,12 @@ The application uses **NoSQL** (MongoDB) to efficiently handle large amounts of 
                 - thoughtRoutes.ts
                 - index.ts
             - index.ts
+        - utils/
+            - formatDate.ts
         - server.ts
+    - .env
+    - .gitignore
+    - LICENSE
     - package.json
     - tsconfig.json
     - README.md
