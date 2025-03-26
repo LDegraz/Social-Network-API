@@ -68,6 +68,7 @@ export const deleteUser = async (req: Request<{ userId: string }>, res: Response
 };
 
 export const addFriend = async (req: Request<{ userId: string; friendId: string }>, res: Response): Promise<void> => {
+  console.log("Add friend");
   try {
     const user = await User.findByIdAndUpdate(
       req.params.userId,
