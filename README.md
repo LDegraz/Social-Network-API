@@ -8,7 +8,7 @@ The application uses **NoSQL** (MongoDB) to efficiently handle large amounts of 
 
 ## 📹 Walkthrough Video
 
-🔗 [Click here to watch the walkthrough video demonstrating full functionality in Insomnia](?????????/)  
+🔗 [Click here to watch the walkthrough video demonstrating full functionality in Insomnia](https://drive.google.com/file/d/1rDYXr1v5BjgGf9wEzGyc2gIoXziYAtqD/view?usp=sharing)  
 
 ## ⚙️ Features
 
@@ -148,6 +148,7 @@ This project is licensed under the MIT License.
 - Lesley Vaden- T.A., providing guidance and support throughout the assignment
 - Kevin Ferguson- Instructor, providing guidance and support throughout the assignment
 - Lindelwe- Rutgers Bootcamp tutor 
+- Sangeetha- Rutgers Bootcamp tutor 
 
 ## 📨 Contact
 
